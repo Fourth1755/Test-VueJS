@@ -1,8 +1,15 @@
 <template>
   <section>
       <img :src="image" :width="size" :height="size"/>
+      <br/>
+      <form @submit.prevent="submitForm">
+          <label>ป้อนชื่อเล่น</label>
+          <input type="text" ref="nicnNmeEl"/>
+          <button type="submit">Save</button>
+      </form>
       <h1>{{ getFullName() }}</h1>
       <h2>{{ lastName}}</h2>
+      <h2>{{ nicname }}</h2>
       <p>{{ age }}</p>
       <span v-html="address"></span>
       <button v-on:click="clickButton">Click</button>
@@ -21,6 +28,7 @@ export default {
     return{
       firstName:"Chisato",
       lastName:"Nishikigi",
+      nicname:"",
       age:17,
       address:"<strong>School</strong>",
       image:"https://i.pinimg.com/736x/6c/1c/fb/6c1cfb3af6cd4ce1aef84096160a309d.jpg",
@@ -39,6 +47,9 @@ export default {
     },
     decrement(){
       this.age--
+    },
+    submitForm(){
+      this.nicname=this.$refs.nicnNmeEl.value
     }
   }
 }
