@@ -2,8 +2,10 @@
     <div class="container">
         <div class="content-container">
             <h1>Find your artist</h1>
-            <SearchBox/>
-            <div v-for="(item,index) in artist" :key="index">
+            <SearchBox
+                @search="fillterArtist"    
+            />
+            <div v-for="(item,index) in listArtist" :key="index">
                 <ArtistItem 
                 :name="item.name" 
                 :country="item.country"
@@ -37,7 +39,22 @@ export default {
                 {name:"Yoasobi",country:"japan",music:[],image:"https://ih1.redbubble.net/image.2162055824.4185/pp,840x830-pad,1000x1000,f8f8f8.jpg"},
                 {name:"Yonezu Kenshi",country:"japan",music:[],image:"https://www.billboard.com/wp-content/uploads/media/Kenshi-Yonezu-2019-cr-Tomokazu-Yamada-billboard-1548.jpg"},
                 {name:"Blcak Pink",country:"korea",music:[],image:"https://i.pinimg.com/originals/00/5b/36/005b36c78f2ba0585416fccd55d58439.jpg"}
-            ]
+            ],
+            listArtist:[]
+        }
+    },
+    methods:{
+        fillterArtist(text){
+            if(text===""){
+                this.listArtist=this.artist
+            }else{
+                this.listArtist=this.artist.filter((item)=>{
+                    if(item.name.toString().includes(text)){
+                            return item
+                    }
+                })
+            }
+            console.log(text)
         }
     }
 }
