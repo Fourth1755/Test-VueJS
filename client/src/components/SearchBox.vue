@@ -1,7 +1,7 @@
 <template>
     <div class="search-container">
         <div class="search-box">
-            <input/>
+            <input type="text" v-on:input="setTextSearch"/>
         </div>
         <div>
             
@@ -21,9 +21,16 @@ export default {
     },
     data(){
         return{
-            country:["Korea","Thailand","Japan","USA","UK","Chaina","Cannada"]
+            country:["Korea","Thailand","Japan","USA","UK","Chaina","Cannada"],
+            textSearch:"",
         }
-    }
+    },
+    methods:{
+        setTextSearch(event){
+            this.textSearch=event.target.value
+            this.$emit("search",event.target.value)
+        }
+    },
 }
 </script>
 
