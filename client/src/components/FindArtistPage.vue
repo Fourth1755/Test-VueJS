@@ -1,6 +1,7 @@
 <template>
     <div class="container">
         <div class="content-container">
+            <FormComponent/>
             <h1>Find your artist</h1>
             <SearchBox
                 @search="fillterArtist"    
@@ -21,6 +22,7 @@
 <script>
 import ArtistItem from './ArtistItem.vue';
 import SearchBox from './SearchBox.vue';
+import FormComponent from './FormComponent.vue';
 export default {
     name: "FindArtistPage",
     props: {
@@ -29,6 +31,7 @@ export default {
     components:{
         ArtistItem,
         SearchBox,
+        FormComponent,
     },
     data(){
         return {
