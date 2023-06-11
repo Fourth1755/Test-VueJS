@@ -1,5 +1,5 @@
 <template>
-    <form>
+    <form @submit.prevent="submitForm">
         <div class="form-control">
             <label>ชื่อวง</label>
             <input type="text" v-model.trim="artist.name"/>
@@ -44,7 +44,7 @@
                 <label>ภาษาญี่ปุ่น</label>
             </div>
         </div>
-            <button>บันทึกข้อมูล</button>
+            <button type="submit">บันทึกข้อมูล</button>
         </div>
     </form>
 
@@ -61,6 +61,11 @@ export default {
                 type:"กลุ่ม",
                 skill:[]
             }
+        }
+    },
+    methods:{
+        submitForm(){
+            this.$emit("save",this.artist)
         }
     }
 }
