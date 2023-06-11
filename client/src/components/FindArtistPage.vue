@@ -1,7 +1,9 @@
 <template>
     <div class="container">
         <div class="content-container">
-            <FormComponent/>
+            <FormComponent
+                @save="addArtist"
+            />
             <h1>Find your artist</h1>
             <SearchBox
                 @search="fillterArtist"    
@@ -35,7 +37,7 @@ export default {
     },
     data(){
         return {
-            artist:[
+            artists:[
                 {name:"BTS",country:"korea",music:[],image:"https://upload.wikimedia.org/wikipedia/commons/f/ff/BTS_logo_%282017%29.png"},
                 {name:"Twice",country:"korea",music:[],image:"https://www.pngitem.com/pimgs/m/163-1635808_twice-logo-kpop-pink-purple-png-image-with.png"},
                 {name:"Official Hige Dandism",country:"japan",music:[],image:"https://note-store.com/upload/resize_cache/iblock/8af/325_380_2/Official-HIGE-DANdism.png"},
@@ -49,15 +51,18 @@ export default {
     methods:{
         fillterArtist(text){
             if(text===""){
-                this.listArtist=this.artist
+                this.listArtist=this.artists
             }else{
-                this.listArtist=this.artist.filter((item)=>{
+                this.listArtist=this.artists.filter((item)=>{
                     if(item.name.toString().includes(text)){
                             return item
                     }
                 })
             }
             console.log(text)
+        },
+        addArtist(artist){
+            this.listArtist.push(artist)
         }
     }
 }
